@@ -34,24 +34,24 @@ public class GameManager: MonoBehaviour
     {
         RGlowColor = PlayerPrefs.GetString("GlowColor");
 
-        if (RGlowColor == "Cyan")
+        switch(RGlowColor)
         {
-            RColor = Color.cyan;
-        }
+            case "Cyan":
+                RColor = Color.cyan;
+                break;
 
-        if (RGlowColor == "Green")
-        {
-            RColor = Color.green;
-        }
+            case "Green":
+                RColor = Color.green;
+                break;
 
-        if (RGlowColor == "Purple")
-        {
-            RColor = Color.magenta;
-        }
+            case "Purple":
+                RColor = Color.green;
+                break;
 
-        if (RGlowColor == "White")
-        {
-            RColor = Color.white;
+            case "White":
+                RColor = Color.white;
+                break;
+
         }
 
         ScoreSpotlight.color = RColor;
@@ -64,16 +64,18 @@ public class GameManager: MonoBehaviour
         //Taking saved Highscore
         level = PlayerPrefs.GetInt("Level");
 
-        if (level == 1)
+        switch(level)
         {
-            HighScore = PlayerPrefs.GetInt("L1HighScore");
-        }
+            case 1:
+                HighScore = PlayerPrefs.GetInt("L1HighScore");
+                break;
 
-        if (level == 2)
-        {
-            HighScore = PlayerPrefs.GetInt("L2HighScore");
-        }
+            case 2:
+                HighScore = PlayerPrefs.GetInt("L2HighScore");
+                break;
 
+        }
+   
 		score = 0;
         CheckSound();
 
@@ -168,14 +170,15 @@ public class GameManager: MonoBehaviour
         {
             HighScore = score;
 
-            if (level == 1)
+            switch(level)
             {
-                PlayerPrefs.SetInt("L1HighScore", HighScore);
-            }
+                case 1:
+                    PlayerPrefs.SetInt("L1HighScore", HighScore);
+                    break;
 
-            if (level == 2)
-            {
-                PlayerPrefs.SetInt("L2HighScore", HighScore);
+                case 2:
+                    PlayerPrefs.SetInt("L2HighScore", HighScore);
+                    break;
             }
         }
 
@@ -246,16 +249,18 @@ public class GameManager: MonoBehaviour
         AudioSource audio = GameController.GetComponent<AudioSource>();
         Sound = PlayerPrefs.GetInt("Sound");
 
-        if (Sound == 2)
+        switch(Sound)
         {
-            audio.mute = false;
-            soundToggle.GetComponent<Toggle>().isOn = true;
-        }
+            case 1:
+                audio.mute = true;
+                soundToggle.GetComponent<Toggle>().isOn = false;
+                break;
 
-        else if (Sound == 1)
-        {
-            audio.mute = true;
-            soundToggle.GetComponent<Toggle>().isOn = false;
+            case 2:
+                audio.mute = false;
+                soundToggle.GetComponent<Toggle>().isOn = true;
+                break;
+
         }
     }
 

@@ -24,26 +24,24 @@ public class MouseControl : MonoBehaviour
         BlocksRemaining = limit - BlockCount;
         BlockInfo.text = "" + BlocksRemaining;
 
-        if (BlocksRemaining == 3)
+        switch (BlocksRemaining)
         {
-            GlowImage.GetComponent<Transform>().localScale = new Vector3(5f, 5f, 1.0f);
-        }
+            case 3:
+                GlowImage.GetComponent<Transform>().localScale = new Vector3(5f, 5f, 1.0f);
+                break;
 
-        if (BlocksRemaining == 2)
-        {
-            GlowImage.GetComponent<Transform>().localScale = new Vector3(4f, 4f, 1.0f);
-        }
+            case 2:
+                GlowImage.GetComponent<Transform>().localScale = new Vector3(4f, 4f, 1.0f);
+                break;
 
-        if (BlocksRemaining == 1)
-        {
-            GlowImage.GetComponent<Transform>().localScale = new Vector3(3f, 3f, 1.0f);
-        }
+            case 1:
+                GlowImage.GetComponent<Transform>().localScale = new Vector3(3f, 3f, 1.0f);
+                break;
 
-        if (BlocksRemaining == 0)
-        {
-            GlowImage.GetComponent<Transform>().localScale = new Vector3(0f, 0f, 1.0f);
+            case 0:
+                GlowImage.GetComponent<Transform>().localScale = new Vector3(0f, 0f, 1.0f);
+                break;
         }
-
 
         if (BlockCount < limit)
         {
