@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: e579093cb17e0ce44bad413056b99cb8
+timeCreated: 1521739665
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Teko
+  fontNames:
+  - Teko
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 71e6e3000c9e3da418de7777315d00da, type: 3}
+  - {fileID: 12800000, guid: 2fc3aca4f70e8494fa0f53ce937be849, type: 3}
+  - {fileID: 12800000, guid: 7427c13e99b0d5b4782d13b530ba71ad, type: 3}
+  - {fileID: 12800000, guid: 2cf5ce0f8525de84883a41141c20b9dd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

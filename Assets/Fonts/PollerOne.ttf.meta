@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 58e1a981697faaf4a8d5c9e1594ef09a
+timeCreated: 1521734840
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Poller One
+  fontNames:
+  - Poller One
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
