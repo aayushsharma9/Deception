@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject MainMenuPanel, LevelConfigPanel, CreditsPanel, TutorialPanel, ExitConfirmationPanel; //Panels
+    [SerializeField]
     private GameObject soundToggle, Level1Toggle, Level2Toggle;
     //public GameObject CyanToggle, GreenToggle, PurpleToggle, WhiteToggle, soundToggle, Level1Toggle, Level2Toggle;
     //public GameObject L1Cyan, L1Green, L1Magenta, L1White;
@@ -136,27 +137,21 @@ public class MainMenu : MonoBehaviour
         Level = PlayerPrefs.GetInt("Level");
         //CheckColor();
 
-        
-        while(true)
+        switch(Level)
         {
-            if (Level == 1)
-            {
+            case 1:
                 Level1Toggle.GetComponent<Toggle>().isOn = true;
-                Level2Toggle.GetComponent<Toggle>().isOn = false;
+               // Level2Toggle.GetComponent<Toggle>().isOn = false;
                 break;
-            }
 
-            if (Level == 2)
-            {
-                Level1Toggle.GetComponent<Toggle>().isOn = false;
+            case 2:
+                //Level1Toggle.GetComponent<Toggle>().isOn = false;
                 Level2Toggle.GetComponent<Toggle>().isOn = true;
                 break;
-            }
 
-            else
-            {
-                Level = 1;
-            }
+            default:
+                changeLevelTo(1);
+                break;
         }
     }
 
