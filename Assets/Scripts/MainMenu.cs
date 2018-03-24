@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject MainMenuPanel, LevelConfig, CreditsPanel, TutorialPanel, ExitConfirmation;
-    public GameObject CyanToggle, GreenToggle, PurpleToggle, WhiteToggle, soundToggle, Level1Toggle, Level2Toggle;
-    public GameObject L1Cyan, L1Green, L1Magenta, L1White;
-    public GameObject L2Cyan, L2Green, L2Magenta, L2White;
+    [SerializeField]
+    private GameObject MainMenuPanel, LevelConfigPanel, CreditsPanel, TutorialPanel, ExitConfirmationPanel; //Panels
+    private GameObject soundToggle, Level1Toggle, Level2Toggle;
+    //public GameObject CyanToggle, GreenToggle, PurpleToggle, WhiteToggle, soundToggle, Level1Toggle, Level2Toggle;
+    //public GameObject L1Cyan, L1Green, L1Magenta, L1White;
+    //public GameObject L2Cyan, L2Green, L2Magenta, L2White;
     string GlowColor;
     bool SoundMute, LevelChange;
     int Level, Sound;
@@ -16,14 +18,14 @@ public class MainMenu : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         MainMenuPanel.SetActive(true);
-        LevelConfig.SetActive(false);
+        LevelConfigPanel.SetActive(false);
         CreditsPanel.SetActive(false);
         TutorialPanel.SetActive(false);
         GlowColor = PlayerPrefs.GetString("GlowColor");
         Sound = PlayerPrefs.GetInt("Sound");
         Level = PlayerPrefs.GetInt("Level");
         CheckSound();
-        CheckColor();
+        //CheckColor();
         CheckLevel();
     }
 
@@ -45,53 +47,7 @@ public class MainMenu : MonoBehaviour
         GlowColor = color;
         PlayerPrefs.SetString("GlowColor", GlowColor);
 
-        if (GlowColor == "Cyan")
-        {
-            L1Cyan.SetActive(true);
-            L1Green.SetActive(false);
-            L1Magenta.SetActive(false);
-            L1White.SetActive(false);
-            L2Cyan.SetActive(true);
-            L2Green.SetActive(false);
-            L2Magenta.SetActive(false);
-            L2White.SetActive(false);
-        }
-
-        if (GlowColor == "Green")
-        {
-            L1Cyan.SetActive(false);
-            L1Green.SetActive(true);
-            L1Magenta.SetActive(false);
-            L1White.SetActive(false);
-            L2Cyan.SetActive(false);
-            L2Green.SetActive(true);
-            L2Magenta.SetActive(false);
-            L2White.SetActive(false);
-        }
-
-        if (GlowColor == "Purple")
-        {
-            L1Cyan.SetActive(false);
-            L1Green.SetActive(false);
-            L1Magenta.SetActive(true);
-            L1White.SetActive(false);
-            L2Cyan.SetActive(false);
-            L2Green.SetActive(false);
-            L2Magenta.SetActive(true);
-            L2White.SetActive(false);
-        }
-
-        if (GlowColor == "White")
-        {
-            L1Cyan.SetActive(false);
-            L1Green.SetActive(false);
-            L1Magenta.SetActive(false);
-            L1White.SetActive(true);
-            L2Cyan.SetActive(false);
-            L2Green.SetActive(false);
-            L2Magenta.SetActive(false);
-            L2White.SetActive(true);
-        }
+        //CheckColor();
     }
 
     public void Exit()
@@ -127,8 +83,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenLevelConfig ()
     {
-        CheckColor();
-        LevelConfig.SetActive(true);
+        //CheckColor();
+        LevelConfigPanel.SetActive(true);
         MainMenuPanel.SetActive(false);
     }
 
@@ -171,14 +127,14 @@ public class MainMenu : MonoBehaviour
     public void LevelConf()
     {
         CheckLevel();
-        CheckColor();
-        LevelConfig.SetActive(true);
+        //CheckColor();
+        LevelConfigPanel.SetActive(true);
     }
 
     public void CheckLevel()
     {
         Level = PlayerPrefs.GetInt("Level");
-        CheckColor();
+        //CheckColor();
 
         
         while(true)
@@ -206,7 +162,8 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        Application.LoadLevel("Loading");
+        SceneManager.LoadScene("Loading", LoadSceneMode.Single);
+        //Application.LoadLevel("Loading");
     }
 
     public void changeLevelTo(int n)
@@ -217,19 +174,20 @@ public class MainMenu : MonoBehaviour
 
     public void GoBack()
     {
-        LevelConfig.SetActive(false);
+        LevelConfigPanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        ExitConfirmation.SetActive(false);
+        ExitConfirmationPanel.SetActive(false);
         TutorialPanel.SetActive(false);
         MainMenuPanel.SetActive(true);
     }
 
     public void ConfirmExit()
     {
-        ExitConfirmation.SetActive(true);
+        MainMenuPanel.SetActive(false);
+        ExitConfirmationPanel.SetActive(true);
     }
 
-    void CheckColor()
+    /*void CheckColor()
     {
         while (true)
         {
@@ -297,5 +255,5 @@ public class MainMenu : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-    }
+    }*/
 }

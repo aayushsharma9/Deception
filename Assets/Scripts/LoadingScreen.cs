@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour 
 {
@@ -8,17 +9,19 @@ public class LoadingScreen : MonoBehaviour
 	IEnumerator Start()
 	{
         level = PlayerPrefs.GetInt("Level");
+        AsyncOperation async;
 
-        if (level == 1)
+        switch(level)
         {
-            AsyncOperation async = Application.LoadLevelAsync("Level01");
-            yield return async;
-        }
+            case 1:
+                async = SceneManager.LoadSceneAsync("Level01");
+                yield return async;
+                break;
 
-        else if (level == 2)
-        {
-            AsyncOperation async = Application.LoadLevelAsync("Level02");
-            yield return async;
+            case 2:
+                async = SceneManager.LoadSceneAsync("Level02");
+                yield return async;
+                break;
         }
 	}
 }
