@@ -2,19 +2,21 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager: MonoBehaviour 
 {
-    
+    const float COUNT_DOWN_WAIT_TIME = 0.7f;
 	public bool paused;
-	public GameObject PauseButton, PauseScreen, GameOver, BlockInfoPanel, GameController;
+	public GameObject PauseButton, PauseScreen, GameOver, GameController;
     public GameObject oCamera, soundToggle; 
-    public Text GameOverFinalScore, GameOverHighScore;
+    public TextMeshProUGUI GameOverFinalScore, GameOverHighScore;
 	public bool reachedOne, reachedTwo, SameExit; 
 	public int score;
     public float scoreTimer;
-	public Text ScoreText;
-    public Text countText;
+	public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI countText;
     public GameObject RunnerOne, RunnerTwo, BonusRunner;
     public  float timer;
     int HighScore, Sound;
@@ -86,8 +88,9 @@ public class GameManager: MonoBehaviour
         RunnerOneScript.r = 3;
         RunnerTwoScript.r = 4;
 		Physics.IgnoreCollision (RunnerOne.GetComponent<Collider> (), RunnerTwo.GetComponent<Collider> ()); //Runners will pass through each other 
-        PauseScreen = GameObject.FindGameObjectWithTag ("PauseScreen"); 
-        GameOver = GameObject.FindGameObjectWithTag("GameOverPanel");
+        // PauseScreen = GameObject.FindGameObjectWithTag ("PauseScreen"); 
+        // GameOver = GameObject.FindGameObjectWithTag("GameOverPanel");
+        PauseButton.SetActive(false);        
         CountDown.SetActive(false);
 		GameOver.SetActive(false);
 		PauseScreen.SetActive (false);
@@ -98,7 +101,7 @@ public class GameManager: MonoBehaviour
         scoreInterval = 0.1f;
 
         //COUNTING
-        countText = CountDown.GetComponent<Text>();
+        countText = CountDown.GetComponent<TextMeshProUGUI>();
         StartCoroutine(GetReady());
     }
 
@@ -121,12 +124,6 @@ public class GameManager: MonoBehaviour
         if (!gameOver && !paused && !Counting)
         {
             Timer();
-            BlockInfoPanel.SetActive(true);
-        }
-
-        else
-        {
-            BlockInfoPanel.SetActive(false);
         }
         
         if (RunnerOneScript.r == RunnerTwoScript.r)
@@ -187,7 +184,7 @@ public class GameManager: MonoBehaviour
 
 	public void ChangeSceneTo(string Scene) 
 	{
-		Application.LoadLevel (Scene);
+        SceneManager.LoadScene(Scene);
 	}
 
     public void Pause ()
@@ -202,6 +199,7 @@ public class GameManager: MonoBehaviour
 			AudioSource audio = GameController.GetComponent<AudioSource> ();
 			audio.Pause ();
             GameController.GetComponent<MouseControl>().enabled = false;
+            PauseButton.SetActive(false);
 			PauseScreen.SetActive (true);
 		} 
 
@@ -221,16 +219,15 @@ public class GameManager: MonoBehaviour
         Counting = true;
         AudioSource audio = GameController.GetComponent<AudioSource>();
         audio.Pause();
-        PauseButton.SetActive(false);
         GameController.GetComponent<MouseControl>().enabled = false;
         CountDown.SetActive(true);
 
         countText.text = "3";
-        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1));
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(COUNT_DOWN_WAIT_TIME));
         countText.text = "2";
-        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1));
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(COUNT_DOWN_WAIT_TIME));
         countText.text = "1";
-        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1));
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(COUNT_DOWN_WAIT_TIME));
 
         countText.text = null;
         CountDown.SetActive(false);

@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     //public GameObject CyanToggle, GreenToggle, PurpleToggle, WhiteToggle, soundToggle, Level1Toggle, Level2Toggle;
     //public GameObject L1Cyan, L1Green, L1Magenta, L1White;
     //public GameObject L2Cyan, L2Green, L2Magenta, L2White;
-    string GlowColor;
+    //string GlowColor;
     bool SoundMute, LevelChange;
     int Level, Sound;
 
@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
         LevelConfigPanel.SetActive(false);
         CreditsPanel.SetActive(false);
         TutorialPanel.SetActive(false);
-        GlowColor = PlayerPrefs.GetString("GlowColor");
+        //GlowColor = PlayerPrefs.GetString("GlowColor");
         Sound = PlayerPrefs.GetInt("Sound");
         Level = PlayerPrefs.GetInt("Level");
         CheckSound();
@@ -43,13 +43,13 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void SetColor(string color)
+    /*public void SetColor(string color)
     {
         GlowColor = color;
         PlayerPrefs.SetString("GlowColor", GlowColor);
 
-        //CheckColor();
-    }
+        CheckColor();
+    }*/
 
     public void Exit()
     {
@@ -141,11 +141,9 @@ public class MainMenu : MonoBehaviour
         {
             case 1:
                 Level1Toggle.GetComponent<Toggle>().isOn = true;
-               // Level2Toggle.GetComponent<Toggle>().isOn = false;
                 break;
 
             case 2:
-                //Level1Toggle.GetComponent<Toggle>().isOn = false;
                 Level2Toggle.GetComponent<Toggle>().isOn = true;
                 break;
 
